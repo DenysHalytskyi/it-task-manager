@@ -15,7 +15,7 @@ class Position(models.Model):
     name = models.CharField(max_length=30, unique=True, null=False, blank=False)
 
     def __str__(self) -> str:
-        return f"Position: {self.name}"
+        return self.name
 
 
 class Task(models.Model):
@@ -46,4 +46,4 @@ class TaskType(models.Model):
     name = models.CharField(max_length=255, null=False, blank=False)
 
     def __str__(self) -> str:
-        return f"Task Type: {self.name}"
+        return self.name
