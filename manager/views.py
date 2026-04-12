@@ -70,3 +70,15 @@ def position_detail_view(request: HttpRequest, pk: int) -> HttpResponse:
     }
 
     return render(request, "manager/position_detail.html", context=context)
+
+
+def task_type_detail_view(request: HttpRequest, pk: int) -> HttpResponse:
+    try:
+        task_type = TaskType.objects.get(id=pk)
+    except TaskType.DoesNotExist:
+        raise Http404("Task does not exist")
+    context = {
+        "task_type": task_type,
+    }
+
+    return render(request, "manager/task_type_detail.html", context=context)
