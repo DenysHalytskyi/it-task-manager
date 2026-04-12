@@ -18,3 +18,8 @@ def index(request: HttpRequest) -> HttpResponse:
 class WorkerListView(generic.ListView):
     model = Worker
     context_object_name = "worker_list"
+
+
+class TaskListView(generic.ListView):
+    model = Task
+    context_object_name = "task_list"
