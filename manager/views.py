@@ -47,6 +47,7 @@ def worker_detail_view(request: HttpRequest, pk: int) -> HttpResponse:
 
     return render(request, "manager/worker_detail.html", context=context)
 
+
 def task_detail_view(request: HttpRequest, pk: int) -> HttpResponse:
     try:
         task = Task.objects.get(id=pk)
@@ -57,3 +58,15 @@ def task_detail_view(request: HttpRequest, pk: int) -> HttpResponse:
     }
 
     return render(request, "manager/task_detail.html", context=context)
+
+
+def position_detail_view(request: HttpRequest, pk: int) -> HttpResponse:
+    try:
+        position = Position.objects.get(id=pk)
+    except Position.DoesNotExist:
+        raise Http404("Position does not exist")
+    context = {
+        "position": position,
+    }
+
+    return render(request, "manager/position_detail.html", context=context)
