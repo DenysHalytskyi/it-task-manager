@@ -1,7 +1,9 @@
 from django.http import HttpRequest, HttpResponse, Http404
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
+from manager.forms import TaskForm
 from manager.models import Task, Worker, Position, TaskType
 
 
@@ -82,3 +84,10 @@ def task_type_detail_view(request: HttpRequest, pk: int) -> HttpResponse:
     }
 
     return render(request, "manager/task_type_detail.html", context=context)
+
+"""Create views"""
+class TaskCreateView(generic.CreateView):
+    model = Task
+    form_class = TaskForm
+    success_url = reverse_lazy("manager:task-list")
+    template_name = "manager/task_form.html"
