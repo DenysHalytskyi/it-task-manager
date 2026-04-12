@@ -9,7 +9,7 @@
     {% if task_type_list %}
       {% for task_type in task_type_list %}
       	<ul>
-          <li><a href="#">{{ task_type.name }}</a></li>
+          <li><a href="{% url 'manager:task-type-detail' pk=task_type.id %}">{{ task_type.name }}</a></li>
         </ul>
       {% endfor %}
     {% else %}
