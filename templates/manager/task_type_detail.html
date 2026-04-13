@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block title %}
-  <title>Type: {{ tasktype.name }}</title>
+  <title>Type: {{ task_type.name }}</title>
 {% endblock %}
 
 {% block content %}
   <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1>Task Type: {{ tasktype.name }}</h1>
+    <h1>Task Type: {{ task_type.name }}</h1>
     <a href="{% url 'manager:task-type-list' %}" class="btn btn-outline-secondary btn-sm">
       Back to types
     </a>

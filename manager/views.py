@@ -92,6 +92,13 @@ class TaskCreateView(generic.CreateView):
     success_url = reverse_lazy("manager:task-list")
     template_name = "manager/task_form.html"
 
+
+class TaskTypeCreateView(generic.CreateView):
+    model = TaskType
+    fields = "__all__"
+    success_url = reverse_lazy("manager:task-type-list")
+    template_name = "manager/task_type_form.html"
+
 """Update views"""
 class TaskUpdateView(generic.UpdateView):
     model = Task
