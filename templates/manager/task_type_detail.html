@@ -27,4 +27,7 @@
 {% else %}
   <p>No tasks assigned to this type yet.</p>
 {% endif %}
+  <a class="btn btn-warning btn-sm" href="{% url 'manager:task-type-update' pk=task_type.id %}">
+  Update
+  </a>
 {% endblock %}

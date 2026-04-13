@@ -14,6 +14,7 @@ from manager.views import (
     TaskUpdateView,
     TaskDeleteView,
     TaskTypeCreateView,
+    TaskTypeUpdateView,
     )
 
 app_name = "manager"
@@ -32,7 +33,8 @@ urlpatterns = [
     path("tasks/create/", TaskCreateView.as_view(), name="task-create"),
     path("task_types/create/", TaskTypeCreateView.as_view(), name="task-type-create"),
 
-    path ("tasks/upadte/<int:pk>/", TaskUpdateView.as_view(), name="task-update"),
+    path ("tasks/update/<int:pk>/", TaskUpdateView.as_view(), name="task-update"),
+    path("task_types/update/<int:pk>/", TaskTypeUpdateView.as_view(), name="task-type-update"),
 
     path("tasks/delete/<int:pk>/", TaskDeleteView.as_view(), name="task-delete"),
 ]
