@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from manager.forms import TaskForm
+from manager.forms import TaskForm, WorkerCreateForm
 from manager.models import Task, Worker, Position, TaskType
 
 
@@ -105,6 +105,13 @@ class PositionCreateView(generic.CreateView):
     fields = "__all__"
     success_url = reverse_lazy("manager:position-list")
     template_name = "manager/position_form.html"
+
+
+class WorkerCreateView(generic.CreateView):
+    model = Worker
+    form_class = WorkerCreateForm
+    success_url = reverse_lazy("manager:index")
+
 
 """Update views"""
 class TaskUpdateView(generic.UpdateView):

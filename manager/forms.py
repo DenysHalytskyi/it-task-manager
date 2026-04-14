@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
-from manager.models import Task
+from manager.models import Task, Worker
 
 
 class TaskForm(forms.ModelForm):
@@ -28,3 +28,9 @@ class TaskForm(forms.ModelForm):
             "task_type",
             "assignees"
         ]
+
+
+class WorkerCreateForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = Worker
+        fields = UserCreationForm.Meta.fields + ("position", "first_name", "last_name", "email")
