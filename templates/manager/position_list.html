@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-  <h1>All Positions:</h1>
+  <h1>All Positions: <a class="btn btn-outline-primary" href="{% url 'manager:position-create' %}">+</a></h1>
     {% if position_list %}
       {% for position in position_list %}
       	<ul>
