@@ -42,6 +42,7 @@
     </div>
   {% endif %}
   <a class="btn btn-warning btn-sm" href="{% url 'manager:position-update' pk=position.id %}">
-  Update
+    Update
   </a>
+  <a class="btn btn-danger" href="{% url 'manager:position-delete' pk=position.id %}">Delete</a>
 {% endblock %}
