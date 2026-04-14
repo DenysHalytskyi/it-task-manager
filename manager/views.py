@@ -120,6 +120,13 @@ class TaskTypeUpdateView(generic.UpdateView):
     success_url = reverse_lazy("manager:task-type-list")
     template_name = "manager/task_type_form.html"
 
+
+class PositionUpdateView(generic.UpdateView):
+    model = Position
+    fields = "__all__"
+    success_url = reverse_lazy("manager:position-list")
+    template_name = "manager/position_form.html"
+
 """Delete views"""
 class TaskDeleteView(generic.DeleteView):
     model = Task

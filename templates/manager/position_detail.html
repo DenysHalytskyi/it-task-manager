@@ -41,4 +41,7 @@
       No workers currently assigned to this position.
     </div>
   {% endif %}
+  <a class="btn btn-warning btn-sm" href="{% url 'manager:position-update' pk=position.id %}">
+  Update
+  </a>
 {% endblock %}
