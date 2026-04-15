@@ -10,7 +10,9 @@
       </form>
     </li>
   {% else %}
-    <a href="{% url 'login' %}">Login</a>
+    <li class="list-group-item">
+      <a href="{% url 'login' %}">Login</a>
+    </li>
   {% endif %}
 
   <br>

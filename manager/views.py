@@ -1,3 +1,5 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse, Http404
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -17,27 +19,29 @@ def index(request: HttpRequest) -> HttpResponse:
     return render(request, "manager/index.html", context=context)
 
 """List views"""
-class WorkerListView(generic.ListView):
+class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     context_object_name = "worker_list"
 
 
-class TaskListView(generic.ListView):
+class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     context_object_name = "task_list"
 
 
-class PositionListView(generic.ListView):
+class PositionListView(LoginRequiredMixin, generic.ListView):
     model = Position
     context_object_name = "position_list"
 
 
-class TaskTypeListView(generic.ListView):
+class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     model = TaskType
     context_object_name = "task_type_list"
     template_name = "manager/task_type_list.html"
 
+
 """Detail views"""
+@login_required
 def worker_detail_view(request: HttpRequest, pk: int) -> HttpResponse:
     try:
         worker = Worker.objects.get(id=pk)
@@ -50,6 +54,7 @@ def worker_detail_view(request: HttpRequest, pk: int) -> HttpResponse:
     return render(request, "manager/worker_detail.html", context=context)
 
 
+@login_required
 def task_detail_view(request: HttpRequest, pk: int) -> HttpResponse:
     try:
         task = Task.objects.get(id=pk)
@@ -62,6 +67,7 @@ def task_detail_view(request: HttpRequest, pk: int) -> HttpResponse:
     return render(request, "manager/task_detail.html", context=context)
 
 
+@login_required
 def position_detail_view(request: HttpRequest, pk: int) -> HttpResponse:
     try:
         position = Position.objects.get(id=pk)
@@ -74,6 +80,7 @@ def position_detail_view(request: HttpRequest, pk: int) -> HttpResponse:
     return render(request, "manager/position_detail.html", context=context)
 
 
+@login_required
 def task_type_detail_view(request: HttpRequest, pk: int) -> HttpResponse:
     try:
         task_type = TaskType.objects.get(id=pk)
@@ -85,29 +92,30 @@ def task_type_detail_view(request: HttpRequest, pk: int) -> HttpResponse:
 
     return render(request, "manager/task_type_detail.html", context=context)
 
+
 """Create views"""
-class TaskCreateView(generic.CreateView):
+class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     model = Task
     form_class = TaskForm
     success_url = reverse_lazy("manager:task-list")
     template_name = "manager/task_form.html"
 
 
-class TaskTypeCreateView(generic.CreateView):
+class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = TaskType
     fields = "__all__"
     success_url = reverse_lazy("manager:task-type-list")
     template_name = "manager/task_type_form.html"
 
 
-class PositionCreateView(generic.CreateView):
+class PositionCreateView(LoginRequiredMixin, generic.CreateView):
     model = Position
     fields = "__all__"
     success_url = reverse_lazy("manager:position-list")
     template_name = "manager/position_form.html"
 
 
-class WorkerCreateView(generic.CreateView):
+class WorkerCreateView(LoginRequiredMixin, generic.CreateView):
     model = Worker
     form_class = WorkerCreateForm
     success_url = reverse_lazy("manager:index")
@@ -115,53 +123,54 @@ class WorkerCreateView(generic.CreateView):
 
 
 """Update views"""
-class TaskUpdateView(generic.UpdateView):
+class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Task
     form_class = TaskForm
     success_url = reverse_lazy("manager:task-list")
     template_name = "manager/task_form.html"
 
 
-class TaskTypeUpdateView(generic.UpdateView):
+class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = TaskType
     fields = "__all__"
     success_url = reverse_lazy("manager:task-type-list")
     template_name = "manager/task_type_form.html"
 
 
-class PositionUpdateView(generic.UpdateView):
+class PositionUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Position
     fields = "__all__"
     success_url = reverse_lazy("manager:position-list")
     template_name = "manager/position_form.html"
 
 
-class WorkerUpdateView(generic.UpdateView):
+class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Worker
     form_class = WorkerUpdateForm
     success_url = reverse_lazy("manager:worker-list")
     template_name = "manager/worker_form.html"
 
+
 """Delete views"""
-class TaskDeleteView(generic.DeleteView):
+class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Task
     success_url = reverse_lazy("manager:task-list")
     template_name = "manager/task_confirm_delete.html"
 
 
-class TaskTypeDeleteView(generic.DeleteView):
+class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = TaskType
     success_url = reverse_lazy("manager:task-type-list")
     template_name = "manager/task_type_confirm_delete.html"
 
 
-class PositionDeleteView(generic.DeleteView):
+class PositionDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Position
     success_url = reverse_lazy("manager:position-list")
     template_name = "manager/position_confirm_delete.html"
 
 
-class WorkerDeleteView(generic.DeleteView):
+class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Worker
     success_url = reverse_lazy("manager:index")
     template_name = "manager/worker_confirm_delete.html"
