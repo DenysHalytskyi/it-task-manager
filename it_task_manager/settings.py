@@ -120,6 +120,12 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
 AUTH_USER_MODEL = 'manager.Worker'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"

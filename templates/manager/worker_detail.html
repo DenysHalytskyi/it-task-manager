@@ -46,6 +46,6 @@
   {% else %}
     <p class="text-muted">This worker currently has no assigned tasks.</p>
   {% endif %}
-  <a class="btn btn-warning" href="{% url 'manager:worker-update' pk=worker.id %}">Update</a>
-  <a class="btn btn-danger" href="{% url 'manager:worker-delete' pk=worker.id %}">Delete</a>
+  <a class="btn btn-warning btn-sm" href="{% url 'manager:worker-update' pk=worker.id %}">Update</a>
+  <a class="btn btn-danger btn-sm" href="{% url 'manager:worker-delete' pk=worker.id %}">Delete</a>
 {% endblock %}

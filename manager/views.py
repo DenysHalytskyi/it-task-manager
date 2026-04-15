@@ -16,7 +16,7 @@ def index(request: HttpRequest) -> HttpResponse:
         "num_tasks": num_tasks,
         "num_workers": num_workers,
     }
-    return render(request, "manager/index.html", context=context)
+    return render(request, "manager/dashboard.html", context=context)
 
 
 class SignUpView(generic.CreateView):
