@@ -18,6 +18,12 @@ def index(request: HttpRequest) -> HttpResponse:
     }
     return render(request, "manager/index.html", context=context)
 
+
+class SignUpView(generic.CreateView):
+    form_class = WorkerCreateForm
+    success_url = reverse_lazy("login")
+    template_name = "registration/signup.html"
+
 """List views"""
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
