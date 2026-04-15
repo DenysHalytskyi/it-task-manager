@@ -159,3 +159,9 @@ class PositionDeleteView(generic.DeleteView):
     model = Position
     success_url = reverse_lazy("manager:position-list")
     template_name = "manager/position_confirm_delete.html"
+
+
+class WorkerDeleteView(generic.DeleteView):
+    model = Worker
+    success_url = reverse_lazy("manager:index")
+    template_name = "manager/worker_confirm_delete.html"
