@@ -9,14 +9,14 @@ from manager.forms import TaskForm, WorkerCreateForm, WorkerUpdateForm
 from manager.models import Task, Worker, Position, TaskType
 
 
-def index(request: HttpRequest) -> HttpResponse:
-    num_tasks = Task.objects.all().count()
-    num_workers = Worker.objects.all().count()
-    context = {
-        "num_tasks": num_tasks,
-        "num_workers": num_workers,
-    }
-    return render(request, "manager/dashboard.html", context=context)
+class IndexView(generic.TemplateView):
+    template_name = "manager/dashboard.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["num_tasks"] = Task.objects.count()
+        context["num_workers"] = Worker.objects.count()
+        return context
 
 
 class SignUpView(generic.CreateView):
@@ -47,56 +47,25 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
 
 
 """Detail views"""
-@login_required
-def worker_detail_view(request: HttpRequest, pk: int) -> HttpResponse:
-    try:
-        worker = Worker.objects.get(id=pk)
-    except Worker.DoesNotExist:
-        raise Http404("Worker does not exist")
-    context = {
-        "worker": worker,
-    }
-
-    return render(request, "manager/worker_detail.html", context=context)
+class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Worker
+    template_name = "manager/worker_detail.html"
 
 
-@login_required
-def task_detail_view(request: HttpRequest, pk: int) -> HttpResponse:
-    try:
-        task = Task.objects.get(id=pk)
-    except Task.DoesNotExist:
-        raise Http404("Task does not exist")
-    context = {
-        "task": task,
-    }
-
-    return render(request, "manager/task_detail.html", context=context)
+class TaskDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Task
+    template_name = "manager/task_detail.html"
 
 
-@login_required
-def position_detail_view(request: HttpRequest, pk: int) -> HttpResponse:
-    try:
-        position = Position.objects.get(id=pk)
-    except Position.DoesNotExist:
-        raise Http404("Position does not exist")
-    context = {
-        "position": position,
-    }
-
-    return render(request, "manager/position_detail.html", context=context)
+class PositionDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Position
+    template_name = "manager/position_detail.html"
 
 
-@login_required
-def task_type_detail_view(request: HttpRequest, pk: int) -> HttpResponse:
-    try:
-        task_type = TaskType.objects.get(id=pk)
-    except TaskType.DoesNotExist:
-        raise Http404("Task does not exist")
-    context = {
-        "task_type": task_type,
-    }
-
-    return render(request, "manager/task_type_detail.html", context=context)
+class TaskTypeDetailView(LoginRequiredMixin, generic.DetailView):
+    model = TaskType
+    template_name = "manager/task_type_detail.html"
+    context_object_name = "task_type"
 
 
 """Create views"""
