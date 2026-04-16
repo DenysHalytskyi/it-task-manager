@@ -62,17 +62,10 @@ class PositionDetailView(LoginRequiredMixin, generic.DetailView):
     template_name = "manager/position_detail.html"
 
 
-@login_required
-def task_type_detail_view(request: HttpRequest, pk: int) -> HttpResponse:
-    try:
-        task_type = TaskType.objects.get(id=pk)
-    except TaskType.DoesNotExist:
-        raise Http404("Task does not exist")
-    context = {
-        "task_type": task_type,
-    }
-
-    return render(request, "manager/task_type_detail.html", context=context)
+class TaskTypeDetailView(LoginRequiredMixin, generic.DetailView):
+    model = TaskType
+    template_name = "manager/task_type_detail.html"
+    context_object_name = "task_type"
 
 
 """Create views"""
