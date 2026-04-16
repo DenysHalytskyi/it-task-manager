@@ -9,14 +9,14 @@ from manager.forms import TaskForm, WorkerCreateForm, WorkerUpdateForm
 from manager.models import Task, Worker, Position, TaskType
 
 
-def index(request: HttpRequest) -> HttpResponse:
-    num_tasks = Task.objects.all().count()
-    num_workers = Worker.objects.all().count()
-    context = {
-        "num_tasks": num_tasks,
-        "num_workers": num_workers,
-    }
-    return render(request, "manager/dashboard.html", context=context)
+class IndexView(generic.TemplateView):
+    template_name = "manager/dashboard.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["num_tasks"] = Task.objects.count()
+        context["num_workers"] = Worker.objects.count()
+        return context
 
 
 class SignUpView(generic.CreateView):

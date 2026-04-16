@@ -1,7 +1,7 @@
 from django.urls import path
 
 from manager.views import (
-    index,
+    IndexView,
     WorkerListView,
     TaskListView,
     PositionListView,
@@ -27,7 +27,7 @@ from manager.views import (
 
 app_name = "manager"
 urlpatterns = [
-    path("", index, name="index"),
+    path("", IndexView.as_view(), name="index"),
     path("signup/", SignUpView.as_view(), name="signup"),
     path("workers/", WorkerListView.as_view(), name="worker-list"),
     path("tasks/", TaskListView.as_view(), name="task-list"),
