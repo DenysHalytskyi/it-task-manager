@@ -52,17 +52,9 @@ class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
     template_name = "manager/worker_detail.html"
 
 
-@login_required
-def task_detail_view(request: HttpRequest, pk: int) -> HttpResponse:
-    try:
-        task = Task.objects.get(id=pk)
-    except Task.DoesNotExist:
-        raise Http404("Task does not exist")
-    context = {
-        "task": task,
-    }
-
-    return render(request, "manager/task_detail.html", context=context)
+class TaskDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Task
+    template_name = "manager/task_detail.html"
 
 
 @login_required
