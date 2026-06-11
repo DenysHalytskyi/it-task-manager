@@ -2,6 +2,8 @@
 
 **TaskOrbit** is a custom-built task management solution tailored for IT teams. It combines robust project tracking functionality with a cutting-edge **Glassmorphism** interface. Designed for teams who have outgrown generic tools and want a futuristic, clean workspace to manage their development lifecycle.
 
+👉 **[Live Demo — Explore TaskOrbit](https://it-task-manager-4458.onrender.com)**
+
 ---
 
 ## 🚀 Key Features
@@ -33,8 +35,9 @@ TaskOrbit moves away from the "standard" look of enterprise software, focusing o
 ---
 
 ## 🛠️ Technology Stack
-* **Framework:** Django 6.0
-* **Database:** SQLite
+* **Framework:** Django 6.0 (Class-Based Views)
+* **Database:** PostgreSQL (Hosted on Neon)
+* **Deployment:** Render (Web Service architecture)
 * **Frontend:** Bootstrap 5, Bootswatch (Quartz theme), FontAwesome 6
 * **CSS Customization:** Advanced CSS for glass effects and global UI normalization.
 * **Testing:** Django TestCase for model logic and view accessibility.
@@ -45,7 +48,7 @@ TaskOrbit moves away from the "standard" look of enterprise software, focusing o
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/DenysHalytskyi/it-task-manager.git
+   git clone [https://github.com/DenysHalytskyi/it-task-manager.git](https://github.com/DenysHalytskyi/it-task-manager.git)
    cd it-task-manager
    ```
 
@@ -60,7 +63,11 @@ TaskOrbit moves away from the "standard" look of enterprise software, focusing o
       pip install -r requirements.txt
     ```
 
-4. **Install dependencies:**
+4. **Environment Variables:**
+   
+   Create a ``` .env``` file in the root directory and add your secret key and database configuration variables.
+
+5. **Launch the project:**
     ```bash
       python manage.py migrate
       python manage.py runserver
@@ -74,3 +81,4 @@ The application includes a suite of tests to verify model behavior and page avai
 
 ```bash
    python manage.py test
+```
